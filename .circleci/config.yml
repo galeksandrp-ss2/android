@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: galeksandrp/travistest:docker-build-android
+    steps:
+      - checkout
+      - run: repo sync -c
+      - run: source build/envsetup.sh
+      - run: sh vendor/cm/get-prebuilts
+      - run: brunch cooper
+      - store_artifacts:
+          path: out/target/product/cooper
