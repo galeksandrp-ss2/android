@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
+      - run: repo init
       - run: repo sync -c
       - run: source build/envsetup.sh
       - run: sh vendor/cm/get-prebuilts
