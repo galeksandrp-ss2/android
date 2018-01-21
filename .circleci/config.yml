@@ -5,6 +5,7 @@ jobs:
       - image: galeksandrp/travistest:docker-build-android
     steps:
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
+      - run: touch ~/.ssh/known_hosts
       - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       - run: repo init -u $CIRCLE_REPOSITORY_URL -b $CIRCLE_BRANCH
       - run: repo sync -c
