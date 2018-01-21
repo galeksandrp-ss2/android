@@ -5,7 +5,7 @@ jobs:
       - image: galeksandrp/travistest:docker-build-android
     steps:
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
-      - run: repo init -u $CIRCLE_REPOSITORY_URL
+      - run: repo init -u $CIRCLE_REPOSITORY_URL -b $CIRCLE_BRANCH
       - run: repo sync -c
       - run: source build/envsetup.sh
       - run: sh vendor/cm/get-prebuilts
