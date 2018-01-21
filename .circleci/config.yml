@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: galeksandrp/travistest:docker-build-android
     steps:
-      - checkout
+      - checkout:
           working_directory: ~/repo
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
       - run: repo init -u ~/repo
