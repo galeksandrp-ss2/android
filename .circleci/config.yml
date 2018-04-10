@@ -10,7 +10,7 @@ jobs:
       - run: repo init -u $(echo $CIRCLE_REPOSITORY_URL | tr ':' '/' | sed 's&^git@&git://&') -b $CIRCLE_BRANCH
       - run: repo sync -c
       - run: source build/envsetup.sh && sh vendor/cm/get-prebuilts
-      - run: source build/envsetup.sh && brunch cooper
+      - run: export TERM=xterm && source build/envsetup.sh && brunch cooper
       - store_artifacts:
           path: out/target/product/cooper
     working_directory: ~/work
