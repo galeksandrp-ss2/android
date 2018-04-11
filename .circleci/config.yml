@@ -11,7 +11,7 @@ jobs:
       - run: repo sync -c
       - run: source build/envsetup.sh && sh vendor/cm/get-prebuilts
       - run: cp vendor/cm/proprietary/lib/armeabi/libjackpal-androidterm5.so vendor/cm/proprietary/lib/armeabi/libjackpal-androidterm4.so
-      - run: bash -c 'source build/envsetup.sh && brunch cooper'
+      - run: TERM=xterm watch -n 540 echo 'LOL'
       - store_artifacts:
           path: out/target/product/cooper
     working_directory: ~/work
