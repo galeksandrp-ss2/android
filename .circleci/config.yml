@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: galeksandrp/travistest:docker-build-android-openjdk8
+    steps:
+      - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
+      - run: mkdir -p ~/.ssh
+      - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+      - run: repo init -u $(echo $CIRCLE_REPOSITORY_URL | tr ':' '/' | sed 's&^git@&git://&') -b $CIRCLE_BRANCH
+      - run: repo sync -c
+      - run: TERM=xterm watch -n 540 echo 'LOL'
+      - run: mkdir -p /tmp/artifacts
+      - run: mv out/target/product/cooper/*.zip /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+    working_directory: ~/work
