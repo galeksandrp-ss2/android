@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: galeksandrp/travistest:docker-build-android-jdk7
+    steps:
+      - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
+      - run: mkdir -p ~/.ssh
+      - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+      - run: apt-get install -y libswitch-perl
+      - run: repo init -u $(echo $CIRCLE_REPOSITORY_URL | tr ':' '/' | sed 's&^git@&git://&') -b $CIRCLE_BRANCH
+      - run: repo sync -c
+      - run: source build/envsetup.sh && sh vendor/cm/get-prebuilts
+      - run: bash -c 'source build/envsetup.sh && breakfast cooper && schedtool -B -n 1 -e ionice -n 1 make -j$(expr $(cat /proc/cpuinfo | grep "^processor" | wc -l) / 3) bacon'
+      - run: mkdir -p /tmp/artifacts
+      - run: mv out/target/product/cooper/*.zip /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+    working_directory: ~/work
