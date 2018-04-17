@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: galeksandrp/travistest:docker-build-android-openjdk8
+      - image: galeksandrp/travistest:docker-build-android-openjdk7
     steps:
       - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
       - run: mkdir -p ~/.ssh
