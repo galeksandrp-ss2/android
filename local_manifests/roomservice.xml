@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <project path="device/sharp/ss2" name="Eddie07/android_device_fih_ss2" revision="Lineage-17.1" />
+  <project path="device/sharp/sdm660-common" name="Eddie07/android_device_fih_sdm660-common" revision="Lineage-17.1" />
+  <project path="vendor/sharp/sdm660-common" name="Eddie07/android_vendor_fih_sdm660_common" revision="Lineage-17.1" />
+  <project path="kernel/msm-4.14" name="Eddie07/kernel_sharp_aquos_s2" revision="Lineage-17.1" />
+  <project path="vendor/sharp/ss2" name="Eddie07/android_vendor_fih_ss2" revision="Lineage-17.1" />
+  <!-- <remove-project name="LineageOS/android_bootable_recovery" /> -->
+  <!-- <project path="bootable/recovery" name="platform/bootable/recovery" groups="pdk" remote="aosp" /> -->
+  <!-- <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" revision="5a1ae0467495a198febb86f1edcb130ddae97c09" /> -->
+  <!-- <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" revision="android-9.0" /> -->
+</manifest>

@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: galeksandrp/travistest:docker-build-android-lineageos
+    steps:
+      - run: apt-get update && apt-get install -y kmod
+      - run: echo 'export PATH=~/bin:$PATH' >> $BASH_ENV
+      - run: repo help init | tee
+      - run: repo init -u $(echo $CIRCLE_REPOSITORY_URL | tr ':' '/' | sed 's&^git@&git://&') -b $CIRCLE_BRANCH --current-branch --depth=1 --no-tags
+      - run: repo help init | tee
+      - run: repo help sync | tee
+      - run: ln -s manifests/local_manifests .repo/local_manifests
+      - run: repo sync -c --no-tags -j 14
+      - run: bash -c 'source build/envsetup.sh && breakfast ss2'
+      - run: bash -c 'source build/envsetup.sh && croot && brunch ss2'
+      - run: mv out/target/product/ss2/*.img /tmp/artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+    working_directory: ~/android/lineage
